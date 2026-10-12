@@ -7,7 +7,6 @@ import { StrategyFlow } from "@/components/StrategyFlow";
 import { Deliverables } from "@/components/Deliverables";
 import { Pricing } from "@/components/Pricing";
 
-import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -31,9 +30,6 @@ export default function Home() {
       {/* 8. INVESTIMENTO — Card premium limpo, sem tabela de ancoragem */}
       <Pricing />
 
-
-      {/* RODAPÉ */}
-      <Footer />
     </main>
   );
 }
