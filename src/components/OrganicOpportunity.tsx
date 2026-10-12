@@ -14,32 +14,12 @@ export function OrganicOpportunity() {
         </span>
 
         {/* Headline */}
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-5 max-w-3xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-12 max-w-3xl mx-auto">
           E se a Promo no Alvo tivesse um divulgador trabalhando{" "}
           <span className="text-[#E50914]">24 horas por dia?</span>
         </h2>
 
-        {/* Subtext */}
-        <p className="text-base sm:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto mb-4">
-          É o que um site com conteúdo faz. Enquanto você dorme, um artigo
-          publicado na <strong className="text-slate-700">Promo no Alvo</strong>{" "}
-          pode estar aparecendo no Google para alguém buscando exatamente o que
-          você divulga — e conduzindo essa pessoa direto pro seu grupo.
-        </p>
 
-        {/* Mini bullets */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-12 text-sm font-semibold text-slate-600">
-          {[
-            { icon: "🕐", text: "Disponível 24h por dia, 7 dias por semana" },
-            { icon: "🔍", text: "Encontrado por quem já está procurando" },
-            { icon: "📲", text: "Leva o leitor direto ao botão do grupo" },
-          ].map((item, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <span className="text-base">{item.icon}</span>
-              <span>{item.text}</span>
-            </div>
-          ))}
-        </div>
 
         {/* Animação centralizada */}
         <div className="bg-slate-50 border border-slate-200 rounded-3xl px-6 py-10 sm:px-12 sm:py-12 relative overflow-hidden max-w-2xl mx-auto">
