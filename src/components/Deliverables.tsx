@@ -34,7 +34,7 @@ export function Deliverables() {
       benefit: "Área administrativa intuitiva para publicar artigos, alterar textos, mudar o link dos grupos de WhatsApp ou Telegram e tudo mais, sem depender de nenhum programador.",
     },
     {
-      icon: BarChart3,
+      image: "/card_trackeamento.png",
       title: "Analytics e rastreamento de cliques",
       benefit: "Configuração do Google Analytics e do Search Console para acompanhar quais artigos geram mais visitas, de onde vêm os acessos e quantos visitantes clicam no botão do grupo.",
     },
