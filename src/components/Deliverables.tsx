@@ -11,7 +11,7 @@ export function Deliverables() {
     {
       icon: Smartphone,
       title: "Site profissional responsivo",
-      benefit: "Éric terá um portal próprio com a identidade visual da Promo no Alvo, rápido em qualquer dispositivo — especialmente no celular, onde a maioria dos visitantes está.",
+      benefit: "Éric terá um portal próprio com a identidade visual da Promo no Alvo, rápido em qualquer dispositivo, especialmente no celular, onde a maioria dos visitantes está.",
     },
     {
       icon: BookOpen,
@@ -21,7 +21,7 @@ export function Deliverables() {
     {
       icon: Sparkles,
       title: "SEO técnico + estrutura para buscas com IA",
-      benefit: "O site é configurado para que o Google e assistentes de inteligência artificial consigam ler e entender cada artigo publicado — base essencial para visibilidade orgânica.",
+      benefit: "O site é configurado para que o Google e assistentes de inteligência artificial consigam ler e entender cada artigo publicado, base essencial para visibilidade orgânica.",
     },
     {
       icon: LayoutDashboard,
@@ -43,13 +43,9 @@ export function Deliverables() {
   return (
     <section id="o-que-esta-incluso" className="py-20 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-xs font-bold text-[#E50914] uppercase tracking-wider block mb-3">
-            O que está incluso
-          </span>
+        <div className="text-center max-w-3xl mx-auto mb-14">
           <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-            Tudo o que você precisa para começar.
+            Tudo o que você precisa para melhorar o que você já construiu.
           </h2>
         </div>
 

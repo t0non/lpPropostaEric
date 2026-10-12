@@ -200,7 +200,7 @@ export function Opportunity() {
                 Rastreamento & Analytics
               </h3>
               <p className="text-sm text-slate-500 leading-relaxed font-normal">
-                Saiba exatamente como os visitantes navegam no site, quais botões de grupo recebem mais cliques e de onde vêm as conversões — com Google Analytics 4 e Tag Manager configurados.
+                Saiba exatamente como os visitantes navegam no site, quais botões de grupo recebem mais cliques e de onde vêm as conversões, com Google Analytics 4 e Tag Manager configurados.
               </p>
             </div>
           </div>

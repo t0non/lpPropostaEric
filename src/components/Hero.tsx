@@ -33,7 +33,7 @@ export function Hero() {
 
         {/* Subheadline */}
         <p className="text-lg sm:text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto">
-          Um portal com blog, otimizado para o Google e com painel de gestão —
+          Um portal com blog, otimizado para o Google e com painel de gestão,
           para que suas ofertas encontrem novas pessoas{" "}
           <strong className="text-slate-700">mesmo enquanto você dorme.</strong>
         </p>

@@ -8,9 +8,6 @@ export function StrategyFlow() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Headline */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-xs font-bold text-[#E50914] uppercase tracking-wider block mb-2">
-            A Estratégia
-          </span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-3">
             Como a estratégia funciona
           </h2>

@@ -11,7 +11,7 @@ export function Pricing() {
   const marketServices = [
     { name: "Posicionamento nas IAs (Gemini, ChatGPT, Perplexity)", price: "R$ 250,00" },
     { name: "Criação do Site Oficial da Promo no Alvo", price: "R$ 500,00" },
-    { name: "Otimização no Google — SEO Técnico Estruturado", price: "R$ 250,00" },
+    { name: "Otimização no Google: SEO Técnico Estruturado", price: "R$ 250,00" },
     { name: "Blog Integrado + Artigos Iniciais Estratégicos", price: "R$ 250,00" },
     { name: "Painel Administrativo para Gerenciamento de Grupos", price: "R$ 250,00" },
     { name: "Google Analytics 4 e Rastreamento de Cliques", price: "R$ 150,00" },
@@ -76,9 +76,6 @@ export function Pricing() {
 
         {/* Proposal Real Price */}
         <div className="mt-12 max-w-xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-red-50 text-[#E50914] font-bold text-xs uppercase tracking-wide mb-3">
-            Investimento Único
-          </span>
           <div className="flex items-baseline justify-center text-slate-900">
             <span className="text-5xl sm:text-6xl font-black tracking-tight">
               R$ 997
@@ -98,7 +95,7 @@ export function Pricing() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-xl bg-[#E50914] hover:bg-red-700 text-white font-black text-sm sm:text-base transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
               >
-                <span>Quero começar — Aprovar a proposta da Promo no Alvo</span>
+                <span>Quero começar: Aprovar a proposta da Promo no Alvo</span>
                 <ArrowRight className="w-5 h-5" />
               </a>
             ) : (
@@ -115,7 +112,7 @@ export function Pricing() {
                 ) : (
                   <>
                     <ArrowRight className="w-5 h-5" />
-                    <span>Quero começar — Aprovar a proposta da Promo no Alvo</span>
+                    <span>Quero começar: Aprovar a proposta da Promo no Alvo</span>
                   </>
                 )}
               </button>

@@ -8,10 +8,6 @@ export function OrganicOpportunity() {
     <section id="oportunidade" className="py-20 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-        {/* Label */}
-        <span className="text-xs font-bold text-[#E50914] uppercase tracking-wider block mb-4">
-          A Oportunidade
-        </span>
 
         {/* Headline */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-12 max-w-3xl mx-auto">
