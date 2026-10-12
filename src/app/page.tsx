@@ -3,7 +3,7 @@ import { OrganicOpportunity } from "@/components/OrganicOpportunity";
 import { Opportunity } from "@/components/Opportunity";
 import { StrategyFlow } from "@/components/StrategyFlow";
 
-import { SitePreview } from "@/components/SitePreview";
+
 import { Deliverables } from "@/components/Deliverables";
 import { Pricing } from "@/components/Pricing";
 import { NextSteps } from "@/components/NextSteps";
@@ -24,9 +24,6 @@ export default function Home() {
       {/* 4. FUNIL VISUAL DA ESTRATÉGIA */}
       <StrategyFlow />
 
-
-      {/* 6. DEMONSTRAÇÃO INTERATIVA — Ver site / Ver painel */}
-      <SitePreview />
 
       {/* 7. BENEFÍCIOS E ENTREGAS — 6 cards orientados ao benefício + nota estratégica */}
       <Deliverables />
