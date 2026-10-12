@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     follow: false,
   },
   icons: {
-    icon: "/logo_promonoalvo.png",
-    shortcut: "/logo_promonoalvo.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
     apple: "/logo_promonoalvo.png",
   },
 };
