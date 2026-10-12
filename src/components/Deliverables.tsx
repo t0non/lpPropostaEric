@@ -15,8 +15,8 @@ export function Deliverables() {
     },
     {
       icon: BookOpen,
-      title: "Blog otimizado + 2 artigos iniciais",
-      benefit: "Estrutura de blog pronta para publicar reviews, comparativos e listas de produtos. Dois artigos estratégicos inclusos para dar o pontapé inicial no conteúdo.",
+      title: "Blog otimizado + 30 artigos iniciais",
+      benefit: "Estrutura de blog pronta para publicar reviews, comparativos e listas de produtos. Trinta artigos estratégicos inclusos para dar o pontapé inicial com volume e autoridade no Google.",
     },
     {
       icon: Sparkles,

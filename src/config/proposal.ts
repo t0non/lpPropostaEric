@@ -46,7 +46,7 @@ export const proposal: ProposalConfig = {
   deliveryPercentage: 50,
   deliveryValue: 498.5,
   deadline: null, // A definir após validação do escopo
-  includedInitialArticles: 2,
+  includedInitialArticles: 30,
   currency: "BRL",
   scopeSummary: [
     "Site profissional e 100% responsivo com a marca Promo no Alvo",
