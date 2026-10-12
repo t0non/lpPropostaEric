@@ -5,9 +5,15 @@ import React, { useEffect, useState, useRef } from "react";
 const SEARCH_QUERY = "melhor fone bluetooth barato";
 const PHASE_DURATIONS = [700, 2600, 600, 650, 800, 2400, 600];
 
+// Exact Google result page values
+const ARIAL = "arial, sans-serif";
+const TITLE_COLOR = "#1a0dab";
+const BREADCRUMB_COLOR = "#4d5156";
+const SNIPPET_COLOR = "#4d5156";
+const COUNT_COLOR = "#70757a";
+
 const RESULTS = [
   {
-    favicon: "🔴",
     breadcrumb: "promonoalvo.com.br › blog › fones-bluetooth",
     title: "5 Fones Bluetooth com Bom Custo-Benefício – Promo no Alvo",
     snippet:
@@ -15,7 +21,6 @@ const RESULTS = [
     isTarget: true,
   },
   {
-    favicon: "⚙️",
     breadcrumb: "techzoom.com.br › fones › bluetooth-baratos",
     title: "Os 7 melhores fones Bluetooth baratos de 2026",
     snippet:
@@ -23,7 +28,6 @@ const RESULTS = [
     isTarget: false,
   },
   {
-    favicon: "🛒",
     breadcrumb: "mercadolivre.com.br › fones-bluetooth",
     title: "Fone Bluetooth Barato – Mercado Livre",
     snippet:
@@ -32,51 +36,45 @@ const RESULTS = [
   },
 ];
 
-// Google colors (exact)
-const G_BLUE_LINK = "#1a0dab";
-const G_BREADCRUMB = "#4d5156";
-const G_SNIPPET = "#4d5156";
-const G_RESULT_COUNT = "#70757a";
-const G_BORDER = "#dfe1e5";
-const G_FOCUS_SHADOW = "0 1px 6px rgba(32,33,36,.28)";
-const G_FONT = "arial, sans-serif";
+const GOOGLE_COLORS: Record<string, string> = {
+  G: "#4285F4", o1: "#EA4335", o2: "#FBBC05", g: "#4285F4", l: "#34A853", e: "#EA4335",
+};
+const LOGO_CHARS = [
+  { ch: "G", color: "#4285F4" },
+  { ch: "o", color: "#EA4335" },
+  { ch: "o", color: "#FBBC05" },
+  { ch: "g", color: "#4285F4" },
+  { ch: "l", color: "#34A853" },
+  { ch: "e", color: "#EA4335" },
+];
 
 export function GoogleSearchAnimation() {
   const [phase, setPhase] = useState(0);
   const [typedChars, setTypedChars] = useState(0);
-  const [opacity, setOpacity] = useState(1);
+  const [fade, setFade] = useState(1);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const typeIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const typeRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Typing
   useEffect(() => {
     if (phase === 1) {
       setTypedChars(0);
-      let count = 0;
+      let c = 0;
       const delay = PHASE_DURATIONS[1] / SEARCH_QUERY.length;
-      typeIntervalRef.current = setInterval(() => {
-        count++;
-        setTypedChars(count);
-        if (count >= SEARCH_QUERY.length) {
-          if (typeIntervalRef.current) clearInterval(typeIntervalRef.current);
-        }
+      typeRef.current = setInterval(() => {
+        c++;
+        setTypedChars(c);
+        if (c >= SEARCH_QUERY.length && typeRef.current) clearInterval(typeRef.current);
       }, delay);
     } else {
-      if (typeIntervalRef.current) clearInterval(typeIntervalRef.current);
+      if (typeRef.current) clearInterval(typeRef.current);
     }
   }, [phase]);
 
-  // Fade on reset
   useEffect(() => {
-    if (phase === 6) {
-      setOpacity(0);
-    } else if (phase === 0) {
-      setTypedChars(0);
-      setTimeout(() => setOpacity(1), 50);
-    }
+    if (phase === 6) setFade(0);
+    else if (phase === 0) { setTypedChars(0); setTimeout(() => setFade(1), 80); }
   }, [phase]);
 
-  // Phase progression
   useEffect(() => {
     timerRef.current = setTimeout(
       () => setPhase((p) => (p >= 6 ? 0 : p + 1)),
@@ -85,295 +83,231 @@ export function GoogleSearchAnimation() {
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [phase]);
 
-  const displayedText = SEARCH_QUERY.slice(0, typedChars);
-  const isInputActive = phase >= 1;
-  const showResults = phase >= 4;
+  const displayed = SEARCH_QUERY.slice(0, typedChars);
+  const focused = phase >= 1;
   const showSkeleton = phase === 3;
-  const highlightTarget = phase >= 5;
+  const showResults = phase >= 4;
+  const highlighted = phase >= 5;
 
   return (
-    <div
-      style={{
-        fontFamily: G_FONT,
-        opacity,
-        transition: "opacity 0.4s ease",
+    <>
+      {/* Load Roboto (same as Google uses) */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Product+Sans:wght@700&display=swap');
+        @keyframes g-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        @keyframes g-pulse { 0%,100%{opacity:1} 50%{opacity:.55} }
+        @keyframes g-fadein { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+      `}</style>
+
+      <div style={{
+        fontFamily: ARIAL,
+        opacity: fade,
+        transition: "opacity 0.45s ease",
         width: "100%",
-        maxWidth: "600px",
+        maxWidth: "590px",
         margin: "0 auto",
         userSelect: "none",
-      }}
-    >
-      {/* Google logo — exact letter colors */}
-      <div style={{ display: "flex", alignItems: "baseline", gap: "0px", marginBottom: "18px" }}>
-        {[
-          ["G", "#4285F4"],
-          ["o", "#EA4335"],
-          ["o", "#FBBC05"],
-          ["g", "#4285F4"],
-          ["l", "#34A853"],
-          ["e", "#EA4335"],
-        ].map(([ch, color], i) => (
-          <span
-            key={i}
-            style={{
-              fontSize: "26px",
-              fontFamily: "arial, sans-serif",
-              fontWeight: 700,
-              color,
-              letterSpacing: "-0.5px",
-              lineHeight: 1,
-            }}
-          >
-            {ch}
-          </span>
-        ))}
-      </div>
+      }}>
 
-      {/* Search bar — exact Google style */}
-      <div
-        style={{
+        {/* ── Google logo ── */}
+        <div style={{ display: "flex", alignItems: "baseline", marginBottom: "20px" }}>
+          {LOGO_CHARS.map((item, i) => (
+            <span key={i} style={{
+              fontFamily: "'Product Sans', 'Roboto', arial, sans-serif",
+              fontSize: "28px",
+              fontWeight: 700,
+              color: item.color,
+              letterSpacing: "-0.3px",
+              lineHeight: 1,
+            }}>
+              {item.ch}
+            </span>
+          ))}
+        </div>
+
+        {/* ── Search bar ── */}
+        <div style={{
           display: "flex",
           alignItems: "center",
-          gap: "10px",
-          padding: "8px 16px",
+          gap: "12px",
+          padding: "0 16px",
+          height: "44px",
           borderRadius: "24px",
-          border: `1px solid ${isInputActive ? "transparent" : G_BORDER}`,
+          border: focused ? "1px solid transparent" : "1px solid #dfe1e5",
           background: "#fff",
-          boxShadow: isInputActive ? G_FOCUS_SHADOW : "none",
-          transition: "box-shadow 0.2s ease, border-color 0.2s ease",
-          marginBottom: "6px",
-        }}
-      >
-        {/* Search icon SVG — exact Google gray */}
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          style={{ flexShrink: 0 }}
-        >
-          <path
-            d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"
-            stroke="#9aa0a6"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </svg>
+          boxShadow: focused
+            ? "0 1px 6px rgba(32,33,36,.28), 0 0 0 1px rgba(32,33,36,.04)"
+            : "none",
+          transition: "box-shadow 0.2s ease",
+          marginBottom: "8px",
+        }}>
+          {/* Search icon */}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+            <circle cx="11" cy="11" r="7" stroke="#9aa0a6" strokeWidth="2" />
+            <path d="M16.5 16.5L21 21" stroke="#9aa0a6" strokeWidth="2" strokeLinecap="round" />
+          </svg>
 
-        {/* Query text */}
-        <div
-          style={{
+          {/* Query text */}
+          <div style={{
             flex: 1,
+            fontFamily: ARIAL,
             fontSize: "16px",
             color: "#202124",
-            fontFamily: G_FONT,
-            minHeight: "22px",
+            lineHeight: "22px",
             display: "flex",
             alignItems: "center",
-          }}
-        >
-          <span>{displayedText}</span>
-          {phase <= 2 && (
-            <span
-              style={{
+            minHeight: "22px",
+          }}>
+            <span>{displayed}</span>
+            {phase <= 2 && (
+              <span style={{
                 display: "inline-block",
-                width: "1px",
+                width: "1.5px",
                 height: "18px",
                 background: "#4285f4",
                 marginLeft: "1px",
-                animation: "blink 1s step-end infinite",
-              }}
-            />
-          )}
+                animation: "g-blink 1s step-end infinite",
+              }} />
+            )}
+          </div>
+
+          {/* Mic icon */}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+            <rect x="9" y="2" width="6" height="12" rx="3" fill="#4285F4" />
+            <path d="M5 10v2a7 7 0 0 0 14 0v-2" stroke="#4285F4" strokeWidth="2" strokeLinecap="round" />
+            <path d="M12 19v3" stroke="#4285F4" strokeWidth="2" strokeLinecap="round" />
+            <path d="M9 22h6" stroke="#4285F4" strokeWidth="2" strokeLinecap="round" />
+          </svg>
         </div>
 
-        {/* Mic icon */}
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
-          <path
-            d="M12 1a4 4 0 0 1 4 4v7a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4z"
-            stroke="#4285F4"
-            strokeWidth="2"
-          />
-          <path
-            d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v4M9 23h6"
-            stroke="#4285F4"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </svg>
-      </div>
-
-      {/* Result count */}
-      <div
-        style={{
+        {/* ── Result count ── */}
+        <div style={{
+          fontFamily: ARIAL,
           fontSize: "13px",
-          color: G_RESULT_COUNT,
-          fontFamily: G_FONT,
-          marginBottom: "16px",
+          color: COUNT_COLOR,
+          lineHeight: "16px",
+          marginBottom: "18px",
           paddingLeft: "2px",
           opacity: showResults ? 1 : 0,
           transition: "opacity 0.3s ease",
-        }}
-      >
-        Cerca de 4.320.000 resultados (0,42 segundos)
-      </div>
-
-      {/* Skeleton */}
-      {showSkeleton && (
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          {[72, 88, 65].map((w, i) => (
-            <div key={i} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-              <div
-                style={{
-                  height: "12px",
-                  borderRadius: "4px",
-                  background: "#f1f3f4",
-                  width: `${w * 0.55}%`,
-                  animation: "pulse 1.4s ease-in-out infinite",
-                }}
-              />
-              <div
-                style={{
-                  height: "18px",
-                  borderRadius: "4px",
-                  background: "#e8eaed",
-                  width: `${w}%`,
-                  animation: "pulse 1.4s ease-in-out infinite",
-                  animationDelay: "0.1s",
-                }}
-              />
-              <div
-                style={{
-                  height: "13px",
-                  borderRadius: "4px",
-                  background: "#f1f3f4",
-                  width: `${w * 0.8}%`,
-                  animation: "pulse 1.4s ease-in-out infinite",
-                  animationDelay: "0.2s",
-                }}
-              />
-            </div>
-          ))}
+        }}>
+          Cerca de 4.320.000 resultados (0,42 segundos)
         </div>
-      )}
 
-      {/* Results */}
-      {showResults && (
-        <div style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
-          {RESULTS.map((r, i) => {
-            const highlighted = r.isTarget && highlightTarget;
-            return (
-              <div
-                key={i}
-                style={{
-                  padding: highlighted ? "8px 10px" : "0",
-                  borderRadius: highlighted ? "8px" : "0",
-                  background: highlighted ? "#f8f9ff" : "transparent",
-                  outline: highlighted ? "1px solid #c5d0ff" : "none",
-                  transition: "all 0.4s ease",
-                  transitionDelay: `${i * 60}ms`,
-                  cursor: "pointer",
-                }}
-              >
-                {/* Breadcrumb row */}
-                <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "2px" }}>
-                  {/* Favicon circle */}
-                  <div
-                    style={{
-                      width: "18px",
-                      height: "18px",
-                      borderRadius: "50%",
+        {/* ── Skeleton ── */}
+        {showSkeleton && (
+          <div style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
+            {[78, 95, 68].map((w, i) => (
+              <div key={i} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                {[w * 0.48, w, w * 0.75].map((bw, j) => (
+                  <div key={j} style={{
+                    height: j === 1 ? "18px" : "12px",
+                    borderRadius: "4px",
+                    background: j === 1 ? "#e8eaed" : "#f1f3f4",
+                    width: `${bw}%`,
+                    animation: `g-pulse 1.4s ease-in-out ${j * 0.1}s infinite`,
+                  }} />
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* ── Results ── */}
+        {showResults && (
+          <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+            {RESULTS.map((r, i) => {
+              const isHigh = r.isTarget && highlighted;
+              return (
+                <div
+                  key={i}
+                  style={{
+                    padding: isHigh ? "10px 12px" : "0",
+                    borderRadius: isHigh ? "8px" : "0",
+                    background: isHigh ? "#f8f9ff" : "transparent",
+                    outline: isHigh ? "1px solid #c5d0ff" : "none",
+                    transition: "all 0.4s ease",
+                    animation: `g-fadein 0.3s ease ${i * 70}ms both`,
+                    cursor: "pointer",
+                  }}
+                >
+                  {/* Breadcrumb row */}
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "3px" }}>
+                    {/* Favicon */}
+                    <div style={{
+                      width: "18px", height: "18px", borderRadius: "50%",
                       background: r.isTarget ? "#E50914" : "#e8eaed",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
+                      display: "flex", alignItems: "center", justifyContent: "center",
                       flexShrink: 0,
-                    }}
-                  >
-                    {r.isTarget ? (
-                      <span style={{ fontSize: "8px", fontWeight: 900, color: "#fff", fontFamily: "arial" }}>P</span>
-                    ) : (
-                      <span style={{ fontSize: "9px" }}>{r.favicon}</span>
-                    )}
-                  </div>
-                  <span
-                    style={{
+                    }}>
+                      {r.isTarget ? (
+                        <span style={{ fontSize: "8px", fontWeight: 900, color: "#fff", fontFamily: "arial" }}>P</span>
+                      ) : (
+                        <div style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#bbb" }} />
+                      )}
+                    </div>
+
+                    <span style={{
+                      fontFamily: ARIAL,
                       fontSize: "13px",
-                      color: G_BREADCRUMB,
-                      fontFamily: G_FONT,
+                      color: BREADCRUMB_COLOR,
+                      lineHeight: "20px",
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                    }}
-                  >
-                    {r.breadcrumb}
-                  </span>
-                  {highlighted && (
-                    <span
-                      style={{
-                        fontSize: "10px",
-                        fontWeight: 700,
+                    }}>
+                      {r.breadcrumb}
+                    </span>
+
+                    {isHigh && (
+                      <span style={{
+                        fontSize: "10px", fontWeight: 600,
+                        fontFamily: ARIAL,
                         color: "#E50914",
                         background: "#fff0f0",
                         border: "1px solid #fca5a5",
                         borderRadius: "999px",
-                        padding: "1px 7px",
+                        padding: "2px 8px",
                         flexShrink: 0,
-                        animation: "pulse 1.5s ease-in-out infinite",
-                      }}
-                    >
-                      ← Aqui!
-                    </span>
-                  )}
-                </div>
+                        animation: "g-pulse 1.8s ease-in-out infinite",
+                      }}>
+                        ← Aqui!
+                      </span>
+                    )}
+                  </div>
 
-                {/* Title */}
-                <div
-                  style={{
-                    fontSize: "18px",
-                    color: highlighted ? "#1558d6" : G_BLUE_LINK,
-                    fontFamily: G_FONT,
+                  {/* Title */}
+                  <div style={{
+                    fontFamily: ARIAL,
+                    fontSize: "20px",
                     fontWeight: 400,
-                    lineHeight: "24px",
-                    marginBottom: "4px",
+                    color: isHigh ? "#1558d6" : TITLE_COLOR,
+                    lineHeight: "26px",
+                    marginBottom: "3px",
                     transition: "color 0.3s ease",
-                  }}
-                >
-                  {r.title}
-                </div>
+                  }}>
+                    {r.title}
+                  </div>
 
-                {/* Snippet */}
-                <div
-                  style={{
+                  {/* Snippet */}
+                  <div style={{
+                    fontFamily: ARIAL,
                     fontSize: "14px",
-                    color: G_SNIPPET,
-                    fontFamily: G_FONT,
+                    color: SNIPPET_COLOR,
                     lineHeight: "20px",
                     display: "-webkit-box",
                     WebkitLineClamp: 2,
                     WebkitBoxOrient: "vertical",
                     overflow: "hidden",
-                  }}
-                >
-                  {r.snippet}
+                  }}>
+                    {r.snippet}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-
-      {/* CSS for animations */}
-      <style>{`
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.5; }
-        }
-      `}</style>
-    </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
