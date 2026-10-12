@@ -2,7 +2,7 @@ import { Hero } from "@/components/Hero";
 import { OrganicOpportunity } from "@/components/OrganicOpportunity";
 import { Opportunity } from "@/components/Opportunity";
 import { StrategyFlow } from "@/components/StrategyFlow";
-import { HowItWorks } from "@/components/HowItWorks";
+
 import { SitePreview } from "@/components/SitePreview";
 import { Deliverables } from "@/components/Deliverables";
 import { Pricing } from "@/components/Pricing";
@@ -24,8 +24,6 @@ export default function Home() {
       {/* 4. FUNIL VISUAL DA ESTRATÉGIA */}
       <StrategyFlow />
 
-      {/* 5. COMO FUNCIONA — Fluxo de 4 etapas Google → Artigo → Convite → Participante */}
-      <HowItWorks />
 
       {/* 6. DEMONSTRAÇÃO INTERATIVA — Ver site / Ver painel */}
       <SitePreview />
