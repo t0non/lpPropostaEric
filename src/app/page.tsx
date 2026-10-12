@@ -6,7 +6,7 @@ import { StrategyFlow } from "@/components/StrategyFlow";
 
 import { Deliverables } from "@/components/Deliverables";
 import { Pricing } from "@/components/Pricing";
-import { NextSteps } from "@/components/NextSteps";
+
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -31,8 +31,6 @@ export default function Home() {
       {/* 8. INVESTIMENTO — Card premium limpo, sem tabela de ancoragem */}
       <Pricing />
 
-      {/* 9. FECHAMENTO — Título, subtítulo, processo e CTA */}
-      <NextSteps />
 
       {/* RODAPÉ */}
       <Footer />
