@@ -3,314 +3,322 @@
 import React, { useState } from "react";
 import { PromoNoAlvoLogo } from "@/components/PromoNoAlvoLogo";
 import {
-  Monitor,
-  LayoutDashboard,
-  MessageCircle,
-  Clock,
-  ArrowRight,
-  FileEdit,
-  Plus,
-  Lock,
-  Save,
-  CheckCircle2,
-  ExternalLink
+  Monitor, Smartphone, LayoutDashboard, MessageCircle,
+  Clock, ArrowRight, Lock, Plus, FileEdit, Users, ChevronRight
 } from "lucide-react";
 
+type ActiveView = "home" | "article";
+type ActiveTab = "site" | "painel";
+
 export function SitePreview() {
-  const [activeTab, setActiveTab] = useState<"site" | "painel">("site");
-  const [deviceMode, setDeviceMode] = useState<"desktop" | "mobile">("desktop");
+  const [tab, setTab] = useState<ActiveTab>("site");
+  const [device, setDevice] = useState<"desktop" | "mobile">("desktop");
+  const [view, setView] = useState<ActiveView>("home");
+  const [groupLink, setGroupLink] = useState("https://chat.whatsapp.com/promonoalvo-vip-oficial");
 
-  const categories = [
-    { label: "Tecnologia", count: "38 achados" },
-    { label: "Moda & Estilo", count: "25 ofertas" },
-    { label: "Casa & Cozinha", count: "19 promoções" },
-    { label: "Beleza", count: "14 cupons" },
-  ];
-
+  const categories = ["Tecnologia", "Moda & Estilo", "Casa & Cozinha", "Beleza"];
   const articles = [
-    {
-      title: "5 fones Bluetooth com bom custo-benefício em 2026",
-      category: "Tecnologia",
-      readTime: "4 min",
-      desc: "Modelos testados abaixo de R$ 200 para comprar com segurança.",
-    },
-    {
-      title: "Air Fryer Mondial vs Philips: qual compensa mais?",
-      category: "Casa & Cozinha",
-      readTime: "5 min",
-      desc: "Comparativo direto de consumo, capacidade e durabilidade.",
-    },
-    {
-      title: "Como não cair em falsos descontos em lojas online",
-      category: "Dicas de Compra",
-      readTime: "3 min",
-      desc: "3 passos simples para checar o histórico real de preços.",
-    },
+    { cat: "Tecnologia", title: "5 fones Bluetooth com bom custo-benefício em 2026", time: "4 min" },
+    { cat: "Casa", title: "Air Fryer Mondial vs Philips: qual compensa mais?", time: "5 min" },
+    { cat: "Dicas", title: "Como não cair em falsos descontos online", time: "3 min" },
   ];
 
-  const isMobile = deviceMode === "mobile";
+  const isMobile = device === "mobile";
 
   return (
-    <section id="previa" className="py-24 bg-white text-slate-900 border-b border-slate-200/80">
+    <section id="demonstracao" className="py-20 bg-white border-t border-slate-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Título da Seção */}
+        {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <span className="text-xs font-bold text-[#E50914] uppercase tracking-wider block mb-2">
+          <span className="text-xs font-bold text-[#E50914] uppercase tracking-wider block mb-3">
             Demonstração Interativa
           </span>
           <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-3">
-            Veja como a Promo no Alvo poderá ficar.
+            {`Éric, experimente como a Promo no Alvo poderá funcionar.`}
           </h2>
           <p className="text-sm sm:text-base text-slate-600">
-            Alterne entre a experiência do visitante no site e o painel administrativo de gestão.
+            Navegue entre o site público e o painel de gestão. Esta é uma
+            demonstração visual do projeto.
           </p>
         </div>
 
-        {/* Controles Principais: "Ver site" e "Ver painel" */}
+        {/* Controls row */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          {/* Tab: Site / Painel */}
           <div className="inline-flex p-1.5 bg-slate-100 rounded-xl border border-slate-200">
             <button
               type="button"
-              onClick={() => setActiveTab("site")}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition-all ${
-                activeTab === "site"
-                  ? "bg-[#E50914] text-white shadow-xs"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
+              onClick={() => { setTab("site"); setView("home"); }}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${
+                tab === "site" ? "bg-[#E50914] text-white shadow-sm" : "text-slate-600 hover:text-slate-900"
               }`}
             >
               <Monitor className="w-4 h-4" />
-              <span>Ver site</span>
+              Ver site
             </button>
             <button
               type="button"
-              onClick={() => setActiveTab("painel")}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition-all ${
-                activeTab === "painel"
-                  ? "bg-[#E50914] text-white shadow-xs"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
+              onClick={() => setTab("painel")}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${
+                tab === "painel" ? "bg-[#E50914] text-white shadow-sm" : "text-slate-600 hover:text-slate-900"
               }`}
             >
               <LayoutDashboard className="w-4 h-4" />
-              <span>Ver painel</span>
+              Ver painel
             </button>
           </div>
 
-          {/* Seletor Mobile/Desktop quando estiver no modo "site" */}
-          {activeTab === "site" && (
-            <div className="inline-flex p-1 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-500">
+          {/* Device switcher (only for site tab) */}
+          {tab === "site" && (
+            <div className="inline-flex p-1 bg-slate-50 rounded-lg border border-slate-200 text-xs">
               <button
                 type="button"
-                onClick={() => setDeviceMode("desktop")}
-                className={`px-3 py-1 rounded font-semibold transition ${
-                  deviceMode === "desktop" ? "bg-white text-slate-900 shadow-xs" : "hover:text-slate-900"
-                }`}
+                onClick={() => setDevice("desktop")}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded font-semibold transition ${device === "desktop" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-900"}`}
               >
-                Desktop
+                <Monitor className="w-3.5 h-3.5" /> Desktop
               </button>
               <button
                 type="button"
-                onClick={() => setDeviceMode("mobile")}
-                className={`px-3 py-1 rounded font-semibold transition ${
-                  deviceMode === "mobile" ? "bg-white text-slate-900 shadow-xs" : "hover:text-slate-900"
-                }`}
+                onClick={() => setDevice("mobile")}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded font-semibold transition ${device === "mobile" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-900"}`}
               >
-                Celular
+                <Smartphone className="w-3.5 h-3.5" /> Celular
+              </button>
+            </div>
+          )}
+
+          {/* View breadcrumb (site tab) */}
+          {tab === "site" && (
+            <div className="hidden sm:flex items-center gap-1.5 text-xs text-slate-400 font-semibold">
+              <button onClick={() => setView("home")} className={view === "home" ? "text-[#E50914]" : "hover:text-slate-600"}>
+                Início
+              </button>
+              <ChevronRight className="w-3 h-3" />
+              <button onClick={() => setView("article")} className={view === "article" ? "text-[#E50914]" : "hover:text-slate-600"}>
+                Artigo
               </button>
             </div>
           )}
         </div>
 
-        {/* Janela de Mockup */}
+        {/* Mockup window */}
         <div className="flex justify-center">
           <div
-            className={`w-full transition-all duration-300 ${
-              activeTab === "site" && isMobile
-                ? "max-w-sm rounded-[36px] border-[8px] border-slate-900 bg-white shadow-2xl p-1"
-                : "max-w-4xl rounded-2xl border border-slate-200 bg-white shadow-xl overflow-hidden"
+            className={`transition-all duration-300 w-full ${
+              tab === "site" && isMobile
+                ? "max-w-sm rounded-[36px] border-[8px] border-slate-900 shadow-2xl bg-white p-1"
+                : "max-w-4xl rounded-2xl border border-slate-200 shadow-xl bg-white overflow-hidden"
             }`}
           >
-            {/* Topbar do Navegador */}
-            <div className="bg-slate-100 px-4 py-3 border-b border-slate-200 flex items-center justify-between text-xs text-slate-500">
-              <div className="flex items-center space-x-1.5">
+            {/* Browser topbar */}
+            <div className="bg-slate-100 px-4 py-2.5 flex items-center justify-between border-b border-slate-200 text-xs text-slate-500">
+              <div className="flex gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
                 <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
               </div>
               <div className="bg-white px-4 py-1 rounded-full text-[11px] font-mono text-slate-500 border border-slate-200">
-                {activeTab === "site" ? "promonoalvo.com.br" : "admin.promonoalvo.com.br"}
+                {tab === "site"
+                  ? view === "home" ? "promonoalvo.com.br" : "promonoalvo.com.br/blog/fones-bluetooth"
+                  : "admin.promonoalvo.com.br"}
               </div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 bg-slate-200 px-2 py-0.5 rounded">
+              <span className="text-[10px] font-bold text-amber-600 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
                 Demonstração
               </span>
             </div>
 
-            {/* ABA 1: VER SITE */}
-            {activeTab === "site" ? (
-              <div className="bg-white text-slate-900">
-                {/* Header do Site */}
-                <div className="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
-                  <PromoNoAlvoLogo className="h-7 sm:h-8 w-auto" variant="light" />
-                  <div className="flex items-center gap-3">
-                    <span className="hidden sm:inline text-xs font-semibold text-slate-600">Blog de Ofertas</span>
+            {/* ========== TAB: SITE ========== */}
+            {tab === "site" && (
+              <div className={`bg-white text-slate-900 ${isMobile ? "rounded-[28px]" : ""}`}>
+                {/* Site header */}
+                <div className="px-4 sm:px-5 py-3 border-b border-slate-100 flex items-center justify-between">
+                  <PromoNoAlvoLogo className="h-7 w-auto" variant="light" />
+                  {!isMobile && (
+                    <nav className="flex gap-4 text-[11px] font-semibold text-slate-600">
+                      <span className="hover:text-[#E50914] cursor-pointer transition-colors">Blog</span>
+                      <span className="hover:text-[#E50914] cursor-pointer transition-colors">Categorias</span>
+                      <span className="hover:text-[#E50914] cursor-pointer transition-colors">Grupos</span>
+                    </nav>
+                  )}
+                  <button type="button" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#E50914] text-white text-[11px] font-bold hover:bg-red-700">
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    <span>Entrar no Grupo</span>
+                  </button>
+                </div>
+
+                {/* HOME VIEW */}
+                {view === "home" ? (
+                  <>
+                    {/* Hero banner */}
+                    <div className={`${isMobile ? "p-5" : "p-8 sm:p-10"} text-center bg-slate-50 border-b border-slate-100`}>
+                      <span className="text-[10px] font-black text-[#E50914] uppercase tracking-wider bg-red-50 border border-red-200 px-2.5 py-0.5 rounded-full inline-block mb-3">
+                        Curadoria Diária de Achadinhos
+                      </span>
+                      <h3 className={`${isMobile ? "text-lg" : "text-2xl"} font-black text-slate-900 mb-2`}>
+                        As melhores ofertas, <span className="text-[#E50914]">no alvo.</span>
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto mb-5">
+                        Análises, comparativos e alertas de promoção direto nos seus grupos.
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => setView("article")}
+                        className="px-5 py-2.5 rounded-xl bg-[#E50914] text-white text-xs font-bold hover:bg-red-700 inline-flex items-center gap-1.5"
+                      >
+                        <span>Explorar artigos</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    {/* Categories */}
+                    <div className={`${isMobile ? "p-4" : "p-5 sm:p-6"} border-b border-slate-100`}>
+                      <p className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Categorias</p>
+                      <div className={`grid gap-2 ${isMobile ? "grid-cols-2" : "grid-cols-4"}`}>
+                        {categories.map((c) => (
+                          <div key={c} className="p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-center hover:border-red-200 transition cursor-pointer">
+                            <p className="text-xs font-bold text-slate-800">{c}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Blog articles */}
+                    <div className={`${isMobile ? "p-4" : "p-5 sm:p-6"}`}>
+                      <div className="flex items-center justify-between mb-3">
+                        <p className="text-xs font-bold text-slate-900 uppercase tracking-wider">Últimos Artigos</p>
+                        <span className="text-xs text-[#E50914] font-bold cursor-pointer">Ver todos →</span>
+                      </div>
+                      <div className={`grid gap-3 ${isMobile ? "grid-cols-1" : "grid-cols-3"}`}>
+                        {articles.map((a, i) => (
+                          <button
+                            key={i}
+                            type="button"
+                            onClick={() => setView("article")}
+                            className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-left hover:border-red-200 transition"
+                          >
+                            <span className="text-[9px] font-black text-[#E50914] uppercase block mb-1">{a.cat}</span>
+                            <h4 className="text-xs font-bold text-slate-900 mb-2 leading-snug">{a.title}</h4>
+                            <span className="text-[10px] text-slate-400 flex items-center gap-1">
+                              <Clock className="w-3 h-3" /> {a.time}
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  /* ARTICLE VIEW */
+                  <div className={`${isMobile ? "p-4" : "p-6 sm:p-8"}`}>
                     <button
                       type="button"
-                      className="px-3.5 py-1.5 rounded-lg bg-[#E50914] text-white text-xs font-bold hover:bg-red-700 flex items-center gap-1.5 shadow-xs"
+                      onClick={() => setView("home")}
+                      className="text-[11px] text-[#E50914] font-bold mb-4 flex items-center gap-1 hover:underline"
                     >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>Entrar no Grupo VIP</span>
+                      ← Voltar ao início
                     </button>
-                  </div>
-                </div>
-
-                {/* Banner / Hero do Site */}
-                <div className="p-6 sm:p-10 text-center bg-slate-50 border-b border-slate-100">
-                  <span className="text-[10px] uppercase font-black text-[#E50914] bg-red-50 border border-red-200 px-3 py-1 rounded-full mb-3 inline-block">
-                    Curadoria Diária de Achadinhos
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-2">
-                    As melhores ofertas da internet, <span className="text-[#E50914]">direto no seu alvo.</span>
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto mb-6 leading-relaxed">
-                    Pesquise análises confiáveis de produtos e entre nos nossos grupos exclusivos para economizar de verdade.
-                  </p>
-                  <button
-                    type="button"
-                    className="px-5 py-2.5 rounded-xl bg-[#E50914] text-white text-xs font-bold hover:bg-red-700 inline-flex items-center gap-1.5 shadow-xs"
-                  >
-                    <span>Receber achadinhos no WhatsApp</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-
-                {/* Categorias de Ofertas */}
-                <div className="p-5 sm:p-6 border-b border-slate-100">
-                  <div className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">
-                    Categorias Principais
-                  </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                    {categories.map((c, i) => (
-                      <div
-                        key={i}
-                        className="p-3 bg-slate-50 hover:bg-white rounded-xl border border-slate-200/80 hover:border-red-200 text-center transition"
-                      >
-                        <p className="text-xs font-bold text-slate-800">{c.label}</p>
-                        <p className="text-[11px] text-slate-600 mt-0.5">{c.count}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Prévia do Blog */}
-                <div className="p-5 sm:p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                      Últimos Artigos & Comparações
+                    <span className="text-[10px] font-black text-[#E50914] uppercase tracking-wider bg-red-50 border border-red-200 px-2 py-0.5 rounded-full">
+                      Tecnologia
                     </span>
-                    <span className="text-xs text-[#E50914] font-bold">Ver todos →</span>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    {articles.map((a, i) => (
-                      <div
-                        key={i}
-                        className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex flex-col justify-between hover:border-slate-300 transition"
-                      >
-                        <div>
-                          <span className="text-[10px] font-black uppercase text-[#E50914] block mb-1">
-                            {a.category}
-                          </span>
-                          <h4 className="text-xs font-bold text-slate-900 mb-1 leading-snug">
-                            {a.title}
-                          </h4>
-                          <p className="text-[11px] text-slate-600 leading-normal mb-3">
-                            {a.desc}
-                          </p>
-                        </div>
-                        <div className="flex items-center justify-between pt-2 border-t border-slate-200/60 text-[10px] text-slate-600">
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-3 h-3 text-slate-600" /> {a.readTime}
-                          </span>
-                          <span className="text-[#E50914] font-bold">Ler artigo</span>
-                        </div>
+                    <h2 className={`${isMobile ? "text-base" : "text-xl"} font-black text-slate-900 mt-3 mb-2 leading-snug`}>
+                      5 fones Bluetooth com bom custo-benefício em 2026
+                    </h2>
+                    <p className="text-[11px] text-slate-400 mb-4 flex items-center gap-2">
+                      <Clock className="w-3 h-3" /> 4 min · Tecnologia
+                    </p>
+                    <div className="bg-slate-100 rounded-xl h-28 flex items-center justify-center mb-4 text-slate-400 text-xs">
+                      [Imagem ilustrativa]
+                    </div>
+                    <p className="text-xs text-slate-600 leading-relaxed mb-5">
+                      Buscando um fone sem fio com bom som e preço justo? Reunimos cinco opções testadas abaixo de R$ 200 com ótimo custo-benefício. Veja os comparativos e aproveite as promoções do nosso grupo.
+                    </p>
+                    <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                      <div>
+                        <p className="text-xs font-bold text-slate-900">Receba ofertas de tecnologia em primeira mão</p>
+                        <p className="text-[11px] text-slate-500">Entre no grupo da Promo no Alvo agora.</p>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              /* ABA 2: VER PAINEL ADMINISTRATIVO */
-              <div className="bg-white text-slate-900 p-6 sm:p-8">
-                <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-200">
-                  <div className="flex items-center gap-2">
-                    <Lock className="w-4 h-4 text-emerald-600" />
-                    <div>
-                      <h4 className="text-sm font-bold text-slate-900">Painel de Controle • Promo no Alvo</h4>
-                      <p className="text-xs text-slate-600">Área simples e intuitiva para você gerenciar o conteúdo.</p>
+                      <button type="button" className="shrink-0 px-3 py-2 rounded-lg bg-[#E50914] text-white text-[11px] font-bold hover:bg-red-700 flex items-center gap-1.5">
+                        <MessageCircle className="w-3.5 h-3.5" />
+                        Entrar no grupo
+                      </button>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    className="px-3.5 py-1.5 rounded-lg bg-[#E50914] text-white text-xs font-bold hover:bg-red-700 flex items-center gap-1"
-                  >
+                )}
+              </div>
+            )}
+
+            {/* ========== TAB: PAINEL ========== */}
+            {tab === "painel" && (
+              <div className="bg-white text-slate-900 p-6 sm:p-8">
+                {/* Admin header */}
+                <div className="flex items-center justify-between pb-5 mb-6 border-b border-slate-200">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <Lock className="w-3.5 h-3.5 text-slate-400" />
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900">Painel Promo no Alvo</h4>
+                      <p className="text-[11px] text-slate-500">Gestão simples, sem precisar de programador.</p>
+                    </div>
+                  </div>
+                  <button type="button" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#E50914] text-white text-xs font-bold hover:bg-red-700">
                     <Plus className="w-3.5 h-3.5" />
-                    <span>Novo Artigo</span>
+                    Novo Artigo
                   </button>
                 </div>
 
-                <div className="space-y-4">
-                  {/* Bloco 1: Gestão de Links dos Grupos */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {/* Artigos */}
                   <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
-                    <label className="text-xs font-bold text-slate-800 block mb-1.5">
-                      Link Principal do Grupo VIP (WhatsApp)
+                    <div className="flex items-center gap-2 mb-3">
+                      <FileEdit className="w-4 h-4 text-[#E50914]" />
+                      <span className="text-xs font-bold text-slate-900">Artigos Publicados</span>
+                    </div>
+                    <div className="space-y-2">
+                      {["5 fones Bluetooth com bom custo-benefício", "Air Fryer Mondial vs Philips Walita"].map((title, i) => (
+                        <div key={i} className="flex items-center justify-between bg-white rounded-lg p-2.5 border border-slate-200 text-xs">
+                          <span className="font-medium text-slate-800 leading-snug">{title}</span>
+                          <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded ml-2 shrink-0">Publicado</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Link do Grupo */}
+                  <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Users className="w-4 h-4 text-[#E50914]" />
+                      <span className="text-xs font-bold text-slate-900">Link do Grupo VIP</span>
+                    </div>
+                    <label className="text-[11px] text-slate-500 block mb-1.5">
+                      Atualize o link aqui e todos os botões do site mudam automaticamente:
                     </label>
                     <div className="flex gap-2">
                       <input
                         type="text"
-                        readOnly
-                        value="https://chat.whatsapp.com/promonoalvo-vip-oficial"
-                        className="flex-1 bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs font-mono text-slate-600"
+                        value={groupLink}
+                        onChange={(e) => setGroupLink(e.target.value)}
+                        className="flex-1 bg-white border border-slate-300 rounded-lg px-2.5 py-2 text-xs font-mono text-slate-600 focus:outline-none focus:border-[#E50914]"
                       />
-                      <button
-                        type="button"
-                        className="px-3 py-2 bg-slate-900 text-white rounded-lg text-xs font-bold hover:bg-slate-800"
-                      >
-                        Alterar Link
+                      <button type="button" className="px-3 py-2 bg-slate-900 text-white rounded-lg text-xs font-bold hover:bg-slate-800">
+                        Salvar
                       </button>
                     </div>
-                    <span className="text-[11px] text-slate-600 block mt-1">
-                      Ao trocar o link aqui, todos os botões do site e dos artigos são atualizados automaticamente.
-                    </span>
                   </div>
+                </div>
 
-                  {/* Bloco 2: Gestão de Artigos Recentes */}
-                  <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-bold text-slate-800">Artigos Publicados</span>
-                      <span className="text-[11px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                        Indexados no Google
-                      </span>
-                    </div>
-
-                    <div className="space-y-2">
-                      <div className="p-2.5 bg-white rounded-lg border border-slate-200 flex items-center justify-between text-xs">
-                        <span className="font-medium text-slate-800">5 fones Bluetooth com bom custo-benefício</span>
-                        <span className="text-[11px] text-slate-600 bg-slate-100 px-2 py-0.5 rounded">Editar</span>
-                      </div>
-                      <div className="p-2.5 bg-white rounded-lg border border-slate-200 flex items-center justify-between text-xs">
-                        <span className="font-medium text-slate-800">Air Fryer Mondial vs Philips Walita</span>
-                        <span className="text-[11px] text-slate-600 bg-slate-100 px-2 py-0.5 rounded">Editar</span>
-                      </div>
-                    </div>
-                  </div>
+                {/* Demo disclaimer */}
+                <div className="mt-5 p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-700 flex items-center gap-2">
+                  <span className="font-bold">⚠</span>
+                  <span>Interface demonstrativa. O painel real terá funcionalidades completas de publicação e gestão.</span>
                 </div>
               </div>
             )}
           </div>
         </div>
 
-        {/* Nota explicativa de demonstração */}
-        <p className="text-center text-xs text-slate-600 mt-6">
-          * Demonstração conceitual do projeto. As cores, textos e detalhes finais serão validados em conjunto com Éric.
+        {/* Footnote */}
+        <p className="text-center text-xs text-slate-400 mt-6">
+          * Demonstração visual do projeto. Cores, textos e funcionalidades finais serão definidas em conjunto com Éric.
         </p>
       </div>
     </section>
