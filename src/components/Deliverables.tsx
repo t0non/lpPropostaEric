@@ -41,7 +41,7 @@ export function Deliverables() {
   ];
 
   return (
-    <section id="o-que-esta-incluso" className="py-20 bg-white border-t border-slate-100">
+    <section id="o-que-esta-incluso" className="py-20 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">

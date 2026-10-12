@@ -4,7 +4,7 @@ import React from "react";
 
 export function StrategyFlow() {
   return (
-    <section id="solucao" className="py-20 bg-white text-slate-900 border-t border-slate-200/80">
+    <section id="solucao" className="py-20 bg-white text-slate-900">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Headline */}
         <div className="text-center max-w-2xl mx-auto mb-14">

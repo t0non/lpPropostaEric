@@ -5,7 +5,7 @@ import { GoogleSearchAnimation } from "@/components/GoogleSearchAnimation";
 
 export function OrganicOpportunity() {
   return (
-    <section id="oportunidade" className="py-20 bg-white border-t border-slate-100">
+    <section id="oportunidade" className="py-20 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
         {/* Label */}
