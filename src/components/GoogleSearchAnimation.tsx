@@ -101,6 +101,7 @@ export function GoogleSearchAnimation() {
 
       <div style={{
         fontFamily: ARIAL,
+        textAlign: "left",
         opacity: fade,
         transition: "opacity 0.45s ease",
         width: "100%",
@@ -279,6 +280,7 @@ export function GoogleSearchAnimation() {
                   {/* Title */}
                   <div style={{
                     fontFamily: ARIAL,
+                    textAlign: "left",
                     fontSize: "20px",
                     fontWeight: 400,
                     color: isHigh ? "#1558d6" : TITLE_COLOR,
@@ -292,6 +294,7 @@ export function GoogleSearchAnimation() {
                   {/* Snippet */}
                   <div style={{
                     fontFamily: ARIAL,
+                    textAlign: "left",
                     fontSize: "14px",
                     color: SNIPPET_COLOR,
                     lineHeight: "20px",
