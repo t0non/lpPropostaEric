@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" fill="none" class="w-full h-auto">
+  <defs>
+    <!-- Gradiente do Alvo -->
+    <radialGradient id="targetGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E50914" />
+      <stop offset="70%" stop-color="#DC2626" />
+      <stop offset="100%" stop-color="#991B1B" />
+    </radialGradient>
+    <!-- Sombra elegante -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#E50914" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- SÍMBOLO: ALVO COM FLECHA -->
+  <g transform="translate(10, 10)">
+    <!-- Círculo externo vermelho -->
+    <circle cx="50" cy="50" r="46" fill="url(#targetGrad)" filter="url(#glow)" />
+    <!-- Anel branco -->
+    <circle cx="50" cy="50" r="36" fill="#FFFFFF" />
+    <!-- Segundo anel vermelho -->
+    <circle cx="50" cy="50" r="26" fill="#E50914" />
+    <!-- Centro branco -->
+    <circle cx="50" cy="50" r="16" fill="#FFFFFF" />
+    <!-- Bullseye central vermelho -->
+    <circle cx="50" cy="50" r="8" fill="#991B1B" />
+
+    <!-- FLECHA PERFURANDO O CENTRO -->
+    <!-- Haste da flecha -->
+    <line x1="8" y1="12" x2="50" y2="50" stroke="#101010" stroke-width="4.5" stroke-linecap="round" />
+    <!-- Ponta da flecha cravada no centro -->
+    <polygon points="50,50 38,44 44,38" fill="#101010" />
+    <!-- Penas da flecha (fletching) -->
+    <path d="M 6 10 L 0 4 M 10 6 L 4 0 M 12 16 L 4 8" stroke="#E50914" stroke-width="3.5" stroke-linecap="round" />
+  </g>
+
+  <!-- TIPOGRAFIA: PROMO NO ALVO (Robusta, inclinada, alto impacto) -->
+  <g transform="translate(125, 20)">
+    <!-- PROMO em Preto/Branco dependendo do fundo, com contorno marcante -->
+    <text x="0" y="44" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="44" font-style="italic" letter-spacing="1" fill="currentColor">
+      PROMO
+    </text>
+
+    <!-- NO ALVO em Vermelho Vivo vibrante -->
+    <text x="0" y="82" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="38" font-style="italic" letter-spacing="2" fill="#E50914">
+      NO ALVO
+    </text>
+
+    <!-- Ponto ou mira de precisão sutil -->
+    <circle cx="195" cy="70" r="4" fill="#E50914" />
+  </g>
+</svg>
