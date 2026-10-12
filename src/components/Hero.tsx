@@ -3,88 +3,82 @@
 import React from "react";
 import { proposal } from "@/config/proposal";
 import { PromoNoAlvoLogo } from "@/components/PromoNoAlvoLogo";
-import { Search, Users, TrendingUp, ChevronDown, Target } from "lucide-react";
+import { Search, BookOpen, Layers, ArrowRight } from "lucide-react";
 
 export function Hero() {
   const benefits = [
     {
       icon: Search,
-      label: "Ser encontrado",
-      desc: "Ampliar oportunidades de descoberta pelas pesquisas.",
+      title: "Mais oportunidades de descoberta",
+      desc: "Pessoas que buscam por ofertas no Google encontram a sua marca.",
     },
     {
-      icon: TrendingUp,
-      label: "Atrair interessados",
-      desc: "Apresentar conteúdos e recomendações relevantes.",
+      icon: BookOpen,
+      title: "Blog otimizado para Google",
+      desc: "Artigos e comparativos que geram visitas orgânicas contínuas.",
     },
     {
-      icon: Users,
-      label: "Crescer a comunidade",
-      desc: "Facilitar o acesso aos grupos de achadinhos.",
+      icon: Layers,
+      title: "Grupos e conteúdos em um só lugar",
+      desc: "Um ponto de encontro centralizado para conectar toda a sua audiência.",
     },
   ];
 
   return (
     <section
-      id="topo"
-      className="relative min-h-[90vh] flex items-center justify-center bg-white text-slate-900 pt-10 pb-16 overflow-hidden"
+      id="apresentacao"
+      className="relative min-h-[85vh] flex items-center justify-center bg-white text-slate-900 pt-16 pb-20 overflow-hidden"
     >
-      {/* Fundo sutil */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-b from-red-50/40 via-slate-50/20 to-transparent blur-3xl -z-10" />
-      </div>
-
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-        {/* Etiqueta de contexto */}
-        <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 shadow-xs mb-7">
-          <Target className="w-3.5 h-3.5 text-[#E50914]" />
-          <span className="text-xs uppercase tracking-wider font-semibold text-slate-600">
-            Proposta Comercial · {proposal.client} · {proposal.agency.name}
-          </span>
-        </div>
-
-        {/* Logomarca direta */}
+        {/* Logo Oficial Promo no Alvo */}
         <div className="flex justify-center mb-8">
-          <PromoNoAlvoLogo className="h-24 sm:h-32 md:h-40 w-auto" variant="light" />
+          <PromoNoAlvoLogo className="h-20 sm:h-28 md:h-32 w-auto" variant="light" />
         </div>
 
-        {/* Headline principal */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 max-w-4xl mx-auto leading-[1.15] mb-5">
-          Transforme a Promo no Alvo em um novo canal de descoberta{" "}
-          <span className="text-[#E50914]">para seus grupos.</span>
+        {/* Tag discreta */}
+        <div className="inline-block px-3.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold tracking-wide uppercase mb-6 border border-slate-200">
+          Proposta Comercial Exclusiva para {proposal.client}
+        </div>
+
+        {/* Título Principal */}
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-slate-900 max-w-4xl mx-auto leading-[1.15] mb-6">
+          {proposal.client}, vamos colocar a{" "}
+          <span className="text-[#E50914]">Promo no Alvo</span> no Google?
         </h1>
 
-        {/* Subheadline */}
-        <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto font-normal leading-relaxed mb-12">
-          Uma plataforma profissional com blog estratégico, SEO, painel
-          administrativo e mensuração — preparada para conectar pessoas
-          interessadas em ofertas aos seus grupos.
+        {/* Subtítulo */}
+        <p className="text-base sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed mb-10">
+          Um site profissional com blog estratégico, preparado para atrair visitantes pelas pesquisas e direcioná-los aos seus grupos de achadinhos.
         </p>
 
-        {/* Três benefícios */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-12">
+        {/* Botão de Ação */}
+        <div className="flex justify-center mb-16">
+          <a
+            href="#como-funciona"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#E50914] hover:bg-red-700 text-white font-bold text-base transition-all shadow-sm hover:shadow-md hover:translate-y-[-1px]"
+          >
+            <span>Conhecer o projeto</span>
+            <ArrowRight className="w-5 h-5" />
+          </a>
+        </div>
+
+        {/* 3 Benefícios Curtos */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
           {benefits.map((b, i) => {
             const Icon = b.icon;
             return (
               <div
                 key={i}
-                className="flex flex-col items-center text-center p-5 rounded-2xl bg-slate-50 border border-slate-200/80"
+                className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 transition-all hover:border-slate-300 hover:bg-white"
               >
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-[#E50914] flex items-center justify-center mb-3">
+                <div className="w-10 h-10 rounded-xl bg-red-50 text-[#E50914] flex items-center justify-center mb-4">
                   <Icon className="w-5 h-5" />
                 </div>
-                <p className="text-sm font-bold text-slate-900 mb-1">{b.label}</p>
-                <p className="text-xs text-slate-500 leading-relaxed">{b.desc}</p>
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1.5">{b.title}</h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{b.desc}</p>
               </div>
             );
           })}
-        </div>
-
-        {/* Scroll cue */}
-        <div className="animate-bounce flex justify-center">
-          <a href="#problema" aria-label="Rolar para baixo">
-            <ChevronDown className="w-5 h-5 text-slate-400" />
-          </a>
         </div>
       </div>
     </section>

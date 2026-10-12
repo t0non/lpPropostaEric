@@ -1,38 +1,29 @@
 import { Hero } from "@/components/Hero";
-import { Opportunity } from "@/components/Opportunity";
-import { SitePreview } from "@/components/SitePreview";
 import { JourneySection } from "@/components/JourneySection";
-import { StrategyFlow } from "@/components/StrategyFlow";
-import { SEOSection } from "@/components/SEOSection";
-import { AISection } from "@/components/AISection";
-import { GoogleAdsSection } from "@/components/GoogleAdsSection";
-import { TrackingSection } from "@/components/TrackingSection";
-import { AdminSection } from "@/components/AdminSection";
-import { Timeline } from "@/components/Timeline";
+import { SitePreview } from "@/components/SitePreview";
 import { Deliverables } from "@/components/Deliverables";
 import { Pricing } from "@/components/Pricing";
-import { FAQ } from "@/components/FAQ";
-import { NextSteps } from "@/components/NextSteps";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col bg-white text-slate-900">
+    <main className="min-h-screen flex flex-col bg-white text-slate-900 selection:bg-red-500 selection:text-white">
+      {/* SEÇÃO 1: APRESENTAÇÃO */}
       <Hero />
-      <Opportunity />
-      <SitePreview />
+
+      {/* SEÇÃO 2: COMO FUNCIONA */}
       <JourneySection />
-      <StrategyFlow />
-      <SEOSection />
-      <AISection />
-      <GoogleAdsSection />
-      <TrackingSection />
-      <AdminSection />
-      <Timeline />
+
+      {/* SEÇÃO 3: PRÉVIA DO SITE */}
+      <SitePreview />
+
+      {/* SEÇÃO 4: O QUE ESTÁ INCLUSO */}
       <Deliverables />
+
+      {/* SEÇÃO 5: INVESTIMENTO */}
       <Pricing />
-      <FAQ />
-      <NextSteps />
+
+      {/* RODAPÉ DISCRETO */}
       <Footer />
     </main>
   );
