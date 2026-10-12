@@ -45,7 +45,7 @@ export function Deliverables() {
   ];
 
   return (
-    <section id="o-que-esta-incluso" className="py-24 bg-slate-50 border-b border-slate-200/80">
+    <section id="o-que-esta-incluso" className="py-24 bg-white border-b border-slate-200/80">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título da Seção */}
         <div className="text-center max-w-2xl mx-auto mb-16">
