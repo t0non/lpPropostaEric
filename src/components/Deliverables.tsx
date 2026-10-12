@@ -1,10 +1,7 @@
 "use client";
 
 import React from "react";
-import {
-  Smartphone, BookOpen, Sparkles, LayoutDashboard,
-  BarChart3, Megaphone,
-} from "lucide-react";
+
 
 export function Deliverables() {
   const cards: Array<{
@@ -39,7 +36,7 @@ export function Deliverables() {
       benefit: "Configuração do Google Analytics e do Search Console para acompanhar quais artigos geram mais visitas, de onde vêm os acessos e quantos visitantes clicam no botão do grupo.",
     },
     {
-      icon: Megaphone,
+      image: "/card_ads.png",
       title: "Preparação para Google Ads e Meta Ads",
       benefit: "Se no futuro Éric quiser impulsionar com anúncios, a estrutura técnica já estará pronta. Sem necessidade de retrabalho ou custo adicional para essa base.",
     },
