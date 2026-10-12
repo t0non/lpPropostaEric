@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import { proposal } from "@/config/proposal";
-import { formatCurrency } from "@/lib/formatters";
-import { Info, Check, Copy, ArrowRight, ExternalLink } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 
 export function Pricing() {
   const [copied, setCopied] = useState(false);
@@ -75,110 +74,54 @@ export function Pricing() {
           </div>
         </div>
 
-        {/* Proposal Contrast / Real Price */}
-        <div className="mt-14 max-w-2xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-12">
-            {/* 1st Payment */}
-            <div className="text-center">
-              <span className="inline-block px-3.5 py-1 rounded-full bg-blue-50 text-blue-600 font-bold text-[11px] uppercase tracking-wide mb-3">
-                1º Pagamento (50% Entrada)
-              </span>
-              <div className="flex items-baseline justify-center text-slate-900">
-                <span className="text-4xl sm:text-5xl font-black tracking-tight">
-                  R$ 498
-                </span>
-                <span className="text-xl sm:text-2xl font-black">,50</span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-                Criação de toda a estrutura
-              </p>
-            </div>
-
-            {/* Arrow separator */}
-            <div className="hidden sm:block text-slate-300 text-2xl font-light">
-              →
-            </div>
-
-            {/* 2nd Payment */}
-            <div className="text-center">
-              <span className="inline-block px-3.5 py-1 rounded-full bg-blue-50 text-blue-600 font-bold text-[11px] uppercase tracking-wide mb-3">
-                2º Pagamento (50% Entrega)
-              </span>
-              <div className="flex items-baseline justify-center text-slate-900">
-                <span className="text-4xl sm:text-5xl font-black tracking-tight">
-                  R$ 498
-                </span>
-                <span className="text-xl sm:text-2xl font-black">,50</span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-                Após validação e entrega final
-              </p>
-            </div>
+        {/* Proposal Real Price */}
+        <div className="mt-12 max-w-xl mx-auto text-center">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-red-50 text-[#E50914] font-bold text-xs uppercase tracking-wide mb-3">
+            Investimento Único
+          </span>
+          <div className="flex items-baseline justify-center text-slate-900">
+            <span className="text-5xl sm:text-6xl font-black tracking-tight">
+              R$ 997
+            </span>
+            <span className="text-2xl sm:text-3xl font-black">,00</span>
           </div>
-
-          {/* Economia badge */}
-          <div className="mt-8 text-center">
-            <div className="inline-flex flex-col sm:flex-row items-center gap-1 sm:gap-2 px-5 py-2.5 rounded-full bg-slate-900 text-white text-xs sm:text-sm font-bold shadow-sm">
-              <span>Investimento Único: {formatCurrency(proposal.price)}</span>
-              <span className="text-emerald-400 font-semibold text-xs">
-                (Economia de R$ 653,00 em relação ao valor avulso de mercado)
-              </span>
-            </div>
-          </div>
-
-          {/* Disclaimers & Transparency */}
-          <div className="mt-8 space-y-2.5 max-w-xl mx-auto">
-            <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 flex items-start gap-2.5 text-left">
-              <Info className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
-              <p className="text-xs text-slate-600 leading-relaxed">
-                <strong className="text-slate-800">Sem mensalidades ocultas:</strong> este
-                é um valor único de implementação. Não exigimos gestão mensal
-                obrigatória para a plataforma funcionar.
-              </p>
-            </div>
-            <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 flex items-start gap-2.5 text-left">
-              <Info className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
-              <p className="text-xs text-slate-600 leading-relaxed">
-                <strong className="text-slate-800">Custos externos de terceiros:</strong>{" "}
-                domínio (~R$ 40/ano) e hospedagem (~R$ 20–50/mês) são contratados
-                diretamente por Éric para manter a propriedade 100% sua.
-              </p>
-            </div>
-          </div>
+          <p className="text-sm text-slate-500 font-medium mt-2">
+            Estrutura completa da plataforma Promo no Alvo
+          </p>
 
           {/* CTA Button */}
-          <div className="mt-8 text-center max-w-md mx-auto">
+          <div className="mt-8">
             {hasWhatsappNumber ? (
               <a
                 href={whatsappLink!}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-xl bg-[#E50914] hover:bg-red-700 text-white font-black text-sm sm:text-base transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-xl bg-[#E50914] hover:bg-red-700 text-white font-black text-sm sm:text-base transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
               >
-                <span>Aprovar proposta e iniciar</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Quero começar — Aprovar a proposta da Promo no Alvo</span>
+                <ArrowRight className="w-5 h-5" />
               </a>
             ) : (
               <button
                 type="button"
                 onClick={handleCopyMessage}
-                className="inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-xl bg-[#E50914] hover:bg-red-700 text-white font-black text-sm sm:text-base transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-xl bg-[#E50914] hover:bg-red-700 text-white font-black text-sm sm:text-base transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
               >
                 {copied ? (
                   <>
-                    <Check className="w-4 h-4 text-white" />
+                    <Check className="w-5 h-5 text-white" />
                     <span>Mensagem copiada para o WhatsApp!</span>
                   </>
                 ) : (
                   <>
-                    <Copy className="w-4 h-4" />
-                    <span>Quero aprovar a proposta da Promo no Alvo</span>
+                    <ArrowRight className="w-5 h-5" />
+                    <span>Quero começar — Aprovar a proposta da Promo no Alvo</span>
                   </>
                 )}
               </button>
             )}
-            <p className="text-[11px] text-slate-400 mt-2">
-              Clique para confirmar interesse e alinhar os detalhes de início com a equipe.
+            <p className="text-xs text-slate-400 mt-2.5">
+              Clique para confirmar interesse e dar início imediato ao projeto.
             </p>
           </div>
         </div>
