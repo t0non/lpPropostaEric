@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Sora } from "next/font/google";
 import "./globals.css";
 import { proposal } from "@/config/proposal";
 
-const inter = Inter({
+const sora = Sora({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-sora",
   display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -29,11 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={inter.variable}>
+    <html lang="pt-BR" className={sora.variable}>
       <head>
         <meta name="robots" content="noindex, nofollow" />
       </head>
-      <body className="antialiased bg-white text-slate-900 selection:bg-red-600 selection:text-white">
+      <body className="antialiased bg-white text-slate-900 selection:bg-red-600 selection:text-white font-sans">
         {children}
       </body>
     </html>

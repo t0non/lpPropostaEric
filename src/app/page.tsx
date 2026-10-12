@@ -1,7 +1,6 @@
 import { Hero } from "@/components/Hero";
 import { Opportunity } from "@/components/Opportunity";
 import { StrategyFlow } from "@/components/StrategyFlow";
-import { SitePreview } from "@/components/SitePreview";
 import { Deliverables } from "@/components/Deliverables";
 import { Pricing } from "@/components/Pricing";
 import { Footer } from "@/components/Footer";
@@ -18,13 +17,10 @@ export default function Home() {
       {/* 3. O FUNIL VISUAL DA ESTRATÉGIA */}
       <StrategyFlow />
 
-      {/* 4. PRÉVIA INTERATIVA DO SITE E PAINEL */}
-      <SitePreview />
-
-      {/* 5. O QUE ESTÁ INCLUSO */}
+      {/* 4. O QUE ESTÁ INCLUSO */}
       <Deliverables />
 
-      {/* 6. INVESTIMENTO & FECHAMENTO COM ANCORAGEM */}
+      {/* 5. INVESTIMENTO & FECHAMENTO COM ANCORAGEM */}
       <Pricing />
 
       {/* RODAPÉ */}
