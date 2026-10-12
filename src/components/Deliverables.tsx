@@ -3,7 +3,7 @@
 import React from "react";
 import {
   Smartphone, BookOpen, Sparkles, LayoutDashboard,
-  BarChart3, Megaphone, CheckCircle2, Info
+  BarChart3, Megaphone,
 } from "lucide-react";
 
 export function Deliverables() {
@@ -76,21 +76,6 @@ export function Deliverables() {
           })}
         </div>
 
-        {/* Strategic note */}
-        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 flex items-start gap-3">
-          <Info className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-          <div>
-            <p className="text-sm font-bold text-amber-900 mb-1">
-              Entrega estratégica adicional
-            </p>
-            <p className="text-xs text-amber-800 leading-relaxed">
-              Além da estrutura técnica, vamos definir <strong>10 sugestões de conteúdos</strong> para apoiar as futuras publicações da Promo no Alvo — temas e títulos estratégicos com base em buscas reais.
-            </p>
-            <p className="text-[11px] text-amber-700 mt-2 font-medium">
-              * Esta entrega adicional será confirmada pelo responsável comercial antes da publicação da proposta.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
