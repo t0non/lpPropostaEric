@@ -29,7 +29,7 @@ export function Deliverables() {
       benefit: "O site é configurado para que o Google e assistentes de inteligência artificial consigam ler e entender cada artigo publicado, base essencial para visibilidade orgânica.",
     },
     {
-      image: "/painel_admin.png",
+      image: "/card_admin.png",
       title: "Painel de gerenciamento",
       benefit: "Área administrativa intuitiva para publicar artigos, alterar textos, mudar o link dos grupos de WhatsApp ou Telegram e tudo mais, sem depender de nenhum programador.",
     },
