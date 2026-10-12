@@ -23,10 +23,6 @@ export function Hero() {
           <PromoNoAlvoLogo className="h-16 sm:h-20 w-auto" variant="light" />
         </div>
 
-        {/* Context tag */}
-        <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-widest mb-8 border border-slate-200">
-          Proposta exclusiva para {proposal.client}
-        </div>
 
         {/* Headline */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.05] mb-6">
