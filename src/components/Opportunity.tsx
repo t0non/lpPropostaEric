@@ -173,13 +173,6 @@ export function Opportunity() {
                 Acompanhe quais palavras-chave trazem visitantes ao site, quantas impressões você tem no Google e qual é a posição média dos seus conteúdos nas buscas orgânicas.
               </p>
             </div>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {["Palavras-chave", "Impressões", "Posição média", "Cliques"].map((tag) => (
-                <span key={tag} className="text-[11px] font-semibold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full">
-                  {tag}
-                </span>
-              ))}
-            </div>
           </div>
 
           {/* Card — Google Analytics + GTM */}
@@ -209,13 +202,6 @@ export function Opportunity() {
               <p className="text-sm text-slate-500 leading-relaxed font-normal">
                 Saiba exatamente como os visitantes navegam no site, quais botões de grupo recebem mais cliques e de onde vêm as conversões — com Google Analytics 4 e Tag Manager configurados.
               </p>
-            </div>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {["Sessões", "Cliques nos grupos", "Taxa de conversão", "Origem do tráfego"].map((tag) => (
-                <span key={tag} className="text-[11px] font-semibold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full">
-                  {tag}
-                </span>
-              ))}
             </div>
           </div>
 
