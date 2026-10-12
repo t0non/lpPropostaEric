@@ -41,24 +41,11 @@ export function Pricing() {
   return (
     <section id="investimento" className="py-20 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Title and Subtitle */}
-        <div className="text-center max-w-3xl mx-auto">
+        {/* Title */}
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-2xl sm:text-4xl lg:text-[40px] font-black text-[#0f172a] tracking-tight leading-tight">
             O que outras agências cobram por cada serviço separado.
           </h2>
-          <p className="text-slate-500 text-sm sm:text-base mt-4 max-w-2xl mx-auto leading-relaxed">
-            Veja como esse investimento costuma ser distribuído quando cada entrega é
-            feita de forma separada. Aqui, você recebe a estrutura completa em uma
-            proposta única.
-          </p>
-        </div>
-
-        {/* Info pill badge */}
-        <div className="flex justify-center mt-10 mb-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100/90 text-slate-600 text-[11px] sm:text-xs font-semibold tracking-wide border border-slate-200/60">
-            <Info className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-            <span>VALOR COBRADO PELO MERCADO (OUTRAS AGÊNCIAS) — POR SERVIÇO</span>
-          </div>
         </div>
 
         {/* Anchoring Table */}
