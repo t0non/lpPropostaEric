@@ -3,31 +3,13 @@
 import React from "react";
 import { proposal } from "@/config/proposal";
 import { PromoNoAlvoLogo } from "@/components/PromoNoAlvoLogo";
-import { Search, BookOpen, Layers, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function Hero() {
-  const benefits = [
-    {
-      icon: Search,
-      title: "Mais oportunidades de descoberta",
-      desc: "Pessoas que buscam por ofertas no Google encontram a sua marca.",
-    },
-    {
-      icon: BookOpen,
-      title: "Blog otimizado para Google",
-      desc: "Artigos e comparativos que geram visitas orgânicas contínuas.",
-    },
-    {
-      icon: Layers,
-      title: "Grupos e conteúdos em um só lugar",
-      desc: "Um ponto de encontro centralizado para conectar toda a sua audiência.",
-    },
-  ];
-
   return (
     <section
       id="apresentacao"
-      className="relative min-h-[85vh] flex items-center justify-center bg-white text-slate-900 pt-16 pb-20 overflow-hidden"
+      className="relative min-h-[75vh] flex items-center justify-center bg-white text-slate-900 pt-16 pb-20 overflow-hidden"
     >
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
         {/* Logo Oficial Promo no Alvo */}
@@ -52,33 +34,14 @@ export function Hero() {
         </p>
 
         {/* Botão de Ação */}
-        <div className="flex justify-center mb-16">
+        <div className="flex justify-center">
           <a
-            href="#como-funciona"
+            href="#problema"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#E50914] hover:bg-red-700 text-white font-bold text-base transition-all shadow-sm hover:shadow-md hover:translate-y-[-1px]"
           >
             <span>Conhecer o projeto</span>
             <ArrowRight className="w-5 h-5" />
           </a>
-        </div>
-
-        {/* 3 Benefícios Curtos */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
-          {benefits.map((b, i) => {
-            const Icon = b.icon;
-            return (
-              <div
-                key={i}
-                className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 transition-all hover:border-slate-300 hover:bg-white"
-              >
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-[#E50914] flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5" />
-                </div>
-                <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-1.5">{b.title}</h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{b.desc}</p>
-              </div>
-            );
-          })}
         </div>
       </div>
     </section>
