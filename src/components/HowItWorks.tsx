@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Search, FileText, MessageCircle, UserCheck, ArrowRight } from "lucide-react";
+import { GoogleSearchAnimation } from "@/components/GoogleSearchAnimation";
 
 export function HowItWorks() {
   const steps = [
@@ -64,6 +65,22 @@ export function HowItWorks() {
           </h2>
         </div>
 
+        {/* 🔴 ANIMAÇÃO: Google Search em loop */}
+        <div className="mb-16 bg-slate-50 border border-slate-200 rounded-3xl px-6 py-8 sm:px-10 sm:py-10 relative overflow-hidden">
+          {/* Decorative blur */}
+          <div className="absolute -top-8 -right-8 w-48 h-48 bg-blue-100/60 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-red-100/40 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10">
+            <div className="text-center mb-6">
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+                Simulação animada · Exemplo real
+              </span>
+            </div>
+            <GoogleSearchAnimation />
+          </div>
+        </div>
+
         {/* Steps */}
         <div className="relative">
           {/* Connecting line (desktop) */}
@@ -75,8 +92,8 @@ export function HowItWorks() {
               const isLast = idx === steps.length - 1;
               return (
                 <div key={idx} className="relative flex flex-col items-start">
-                  {/* Step number + icon */}
-                  <div className={`w-14 h-14 rounded-2xl ${step.bg} border ${step.border} flex items-center justify-center mb-4 shadow-xs`}>
+                  {/* Step icon */}
+                  <div className={`w-14 h-14 rounded-2xl ${step.bg} border ${step.border} flex items-center justify-center mb-4`}>
                     <Icon className={`w-6 h-6 ${step.color}`} />
                   </div>
 
@@ -95,7 +112,7 @@ export function HowItWorks() {
 
                   <h3 className="text-base font-bold text-slate-900 mb-2">{step.title}</h3>
 
-                  {/* Example query */}
+                  {/* Example */}
                   <div className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 mb-3 w-full">
                     <span className="text-[10px] text-slate-400 font-semibold block uppercase tracking-wider mb-0.5">Exemplo:</span>
                     <span className="text-xs font-semibold text-slate-700">{step.query}</span>
