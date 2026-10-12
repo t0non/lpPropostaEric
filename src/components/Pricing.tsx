@@ -10,15 +10,15 @@ export function Pricing() {
 
   // Market comparison items for Promo no Alvo deliverables
   const marketServices = [
-    { name: "Posicionamento nas IAs (Gemini, ChatGPT, Perplexity)", price: "R$ 300,00" },
-    { name: "Criação do Site Oficial da Promo no Alvo", price: "R$ 650,00" },
-    { name: "Otimização no Google — SEO Técnico Estruturado", price: "R$ 350,00" },
-    { name: "Blog Integrado + Artigos Iniciais Estratégicos", price: "R$ 400,00" },
-    { name: "Painel Administrativo para Gerenciamento de Grupos", price: "R$ 450,00" },
-    { name: "Google Analytics 4 e Rastreamento de Cliques", price: "R$ 350,00" },
+    { name: "Posicionamento nas IAs (Gemini, ChatGPT, Perplexity)", price: "R$ 250,00" },
+    { name: "Criação do Site Oficial da Promo no Alvo", price: "R$ 500,00" },
+    { name: "Otimização no Google — SEO Técnico Estruturado", price: "R$ 250,00" },
+    { name: "Blog Integrado + Artigos Iniciais Estratégicos", price: "R$ 250,00" },
+    { name: "Painel Administrativo para Gerenciamento de Grupos", price: "R$ 250,00" },
+    { name: "Google Analytics 4 e Rastreamento de Cliques", price: "R$ 150,00" },
   ];
 
-  const totalMarketPrice = "R$ 2.500,00";
+  const totalMarketPrice = "R$ 1.650,00";
 
   const hasWhatsappNumber = Boolean(
     proposal.agency.whatsappNumber &&
@@ -64,12 +64,12 @@ export function Pricing() {
             </div>
           ))}
 
-          {/* Table Total (crossed out) */}
+          {/* Table Total (crossed out with red line, black text) */}
           <div className="flex items-center justify-between px-5 sm:px-7 py-4 bg-slate-50/50">
             <span className="text-xs sm:text-sm font-black text-slate-900">
               Valor Total Estimado:
             </span>
-            <span className="text-sm sm:text-base font-bold text-slate-400 line-through">
+            <span className="text-base sm:text-lg font-black text-slate-900 line-through decoration-[#E50914] decoration-[2.5px]">
               {totalMarketPrice}
             </span>
           </div>
@@ -121,7 +121,7 @@ export function Pricing() {
             <div className="inline-flex flex-col sm:flex-row items-center gap-1 sm:gap-2 px-5 py-2.5 rounded-full bg-slate-900 text-white text-xs sm:text-sm font-bold shadow-sm">
               <span>Investimento Único: {formatCurrency(proposal.price)}</span>
               <span className="text-emerald-400 font-semibold text-xs">
-                (Economia de mais de R$ 1.500 em relação ao mercado)
+                (Economia de R$ 653,00 em relação ao valor avulso de mercado)
               </span>
             </div>
           </div>
