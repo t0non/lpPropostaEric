@@ -16,17 +16,31 @@ export function OrganicOpportunity() {
               A Oportunidade
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-5">
-              Seus próximos participantes podem estar pesquisando uma oferta agora.
+              E se a Promo no Alvo tivesse um divulgador trabalhando 24 horas por dia?
             </h2>
-            <p className="text-base text-slate-600 leading-relaxed mb-6">
-              Com a <strong className="text-slate-900">Promo no Alvo</strong>, vamos criar conteúdos que respondam a buscas sobre produtos e promoções, apresentando sua marca e facilitando o acesso aos seus grupos.
+            <p className="text-base text-slate-600 leading-relaxed mb-5">
+              É o que um site com conteúdo faz. Enquanto você dorme, um artigo publicado na <strong className="text-slate-900">Promo no Alvo</strong> pode estar aparecendo no Google para alguém buscando exatamente o que você divulga — e conduzindo essa pessoa direto pro seu grupo.
             </p>
 
+            {/* Mini stat strip */}
+            <div className="flex flex-col gap-2.5 mb-7">
+              {[
+                { icon: "🕐", text: "Disponível 24h por dia, 7 dias por semana" },
+                { icon: "🔍", text: "Encontrado por quem já está procurando" },
+                { icon: "📲", text: "Leva o leitor direto ao botão do grupo" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3 text-sm text-slate-700">
+                  <span className="text-base leading-none">{item.icon}</span>
+                  <span>{item.text}</span>
+                </div>
+              ))}
+            </div>
+
             <a
-              href="#como-funciona"
+              href="#demonstracao"
               className="inline-flex items-center gap-2 text-sm font-bold text-[#E50914] hover:underline"
             >
-              <span>Ver como funciona o fluxo</span>
+              <span>Ver como o site vai funcionar</span>
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
